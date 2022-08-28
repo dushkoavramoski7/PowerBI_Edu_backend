@@ -22,12 +22,15 @@ public class Documentations {
     @ElementCollection
     private List<String> articles;
 
+    private String category;
+
     public Documentations() {
     }
 
-    public Documentations(String title, String service, List<String> articles) {
+    public Documentations(String title, String service, List<String> articles, String category) {
         this.title = title;
         this.service = service;
         this.articles = articles;
+        this.category = category;
     }
 }
