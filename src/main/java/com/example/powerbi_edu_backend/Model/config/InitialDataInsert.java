@@ -15,15 +15,17 @@ public class InitialDataInsert {
     private final DocumentationsRepository documentationsRepository;
     private final DAXFunctionsRepository daxFunctionsRepository;
     private final CommunityDocumentsRepository communityDocumentsRepository;
-
     private final CommunityLinksRepository communityLinksRepository;
+    private final InfluencersRepository influencersRepository;
 
-    public InitialDataInsert(NewsRepository newsRepository, DocumentationsRepository documentationsRepository, DAXFunctionsRepository daxFunctionsRepository, CommunityDocumentsRepository communityDocumentsRepository, CommunityLinksRepository communityLinksRepository) {
+
+    public InitialDataInsert(NewsRepository newsRepository, DocumentationsRepository documentationsRepository, DAXFunctionsRepository daxFunctionsRepository, CommunityDocumentsRepository communityDocumentsRepository, CommunityLinksRepository communityLinksRepository, InfluencersRepository influencersRepository) {
         this.newsRepository = newsRepository;
         this.documentationsRepository = documentationsRepository;
         this.daxFunctionsRepository = daxFunctionsRepository;
         this.communityDocumentsRepository = communityDocumentsRepository;
         this.communityLinksRepository = communityLinksRepository;
+        this.influencersRepository = influencersRepository;
     }
 
     public static byte[] hexStringToByteArray(String s) {
@@ -138,5 +140,10 @@ public class InitialDataInsert {
         this.communityLinksRepository.save(new CommunityLinks("Power BI Docs: BI Tutorials", "Dashboard & BI Reports with self-service capabilities.", "https://powerbidocs.com/", LocalDateTime.now(), false));
         this.communityLinksRepository.save(new CommunityLinks("Power BI Docs: BI Tutorials", "Dashboard & BI Reports with self-service capabilities.", "https://powerbidocs.com/", LocalDateTime.now(), false));
 
+        this.influencersRepository.save(new Influencers("Avi Singh - PowerBIPro", "My mission is to go beyond just teaching you Power BI, and make you a Power BI Pro! A successful Power BI Professional, both in terms of money you earn and the impact you create. Sure I have videos covering: Power BI Tutorials (Desktop, Query Editor, Relationships, DAX…), Creating Beautiful Power BI Dashboards, Comparing Power BI vs Tableau …and lots of other Tech Videos. But I also have videos covering: How to Make Money Using Your Power BI Skills, How to Get a Power BI Job, How to Become a Power BI Consultant …and lots of other videos to make you a real Pro!", List.of("YouTube:--https://www.youtube.com/c/PowerBIPro/featured")));
+        this.influencersRepository.save(new Influencers("Guy in a Cube", "Guy in a Cube is all about teaching you the clicks of #PowerBI and #AzureSynapse Analytics! We've been working with #PowerBI for a while and explore the platform to get you the information to be successful as a business analyst! We also look at the Microsoft Data Platform, primarily Azure Synapse Analytics so you can get your data in the shape it needs to be in to work well with Power BI and other clients. TUESDAYS: This is your data day where we primarily look at Azure Synapse Analytics and other data platform capabilities.", List.of("YouTube:--https://www.youtube.com/c/GuyinaCube/about")));
+        this.influencersRepository.save(new Influencers("Curbal", "Learn how to take advantage of your data with Microsoft Power BI and excel. We update the channel once a week with:Useful dashboards with popular online data sources like Google Analytics, Twitter, Northwind database, etc.. The latest Power BI updates. Power BI tips& tricks.DAX Fridays, where we go through new DAX measures features every Friday. Perfect to learn DAX for beginners and experts.Join us, we load new videos every week!", List.of("YouTube:--https://www.youtube.com/channel/UCJ7UhloHSA4wAqPzyi6TOkw")));
+        this.influencersRepository.save(new Influencers("Kasper On BI", "Welcome to Kasper On BI ! Kasper here and I am all about sharing and learning everything BI (Business Intelligence) and Analytics! Each episode I will talk to an expert about topics in the Business Intelligence space and its data ecosystem. We will talk about Power BI from DAX to report designing, ETL, data modelling, administration and building a center of excellence. But we will also cover Synapse, Data engineering and Big data. It's all about hearing and learning from the experts! ", List.of("YouTube:--https://www.youtube.com/c/KasperOnBI/about")));
+        this.influencersRepository.save(new Influencers("SQLBI", "Learn and optimize DAX with Marco Russo and Alberto Ferrari - Visit https://www.sqlbi.com/?aff=yt. We are experts on DAX and Data Modeling for Power BI, Analysis Services, and Power Pivot. Visit our website to get more than 200 free articles, books, videos, and courses.", List.of("YouTube:--https://www.youtube.com/c/SQLBI/about")));
     }
 }
