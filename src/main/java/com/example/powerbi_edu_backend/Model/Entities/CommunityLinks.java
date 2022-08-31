@@ -42,6 +42,6 @@ public class CommunityLinks {
     }
 
     public String getFormattedLinkShared() {
-        return "Uploaded: " + DateTimeFormatter.ofPattern(DATE_FORMATTER).format(this.uploadedTime) + ", "+ this.uploadedTime.getDayOfWeek();
+        return "Shared: " + DateTimeFormatter.ofPattern(DATE_FORMATTER).format(this.uploadedTime) + ", "+ this.uploadedTime.getDayOfWeek();
     }
 }
