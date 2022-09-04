@@ -19,9 +19,12 @@ public class InitialDataInsert {
     private final InfluencersRepository influencersRepository;
     private final CourseRepository courseRepository;
     private final LearningPathRepository learningPathRepository;
+    private final QuestionRepository questionRepository;
+
+    private final ExamRepository examRepository;
 
 
-    public InitialDataInsert(NewsRepository newsRepository, DocumentationsRepository documentationsRepository, DAXFunctionsRepository daxFunctionsRepository, CommunityDocumentsRepository communityDocumentsRepository, CommunityLinksRepository communityLinksRepository, InfluencersRepository influencersRepository, CourseRepository courseRepository, LearningPathRepository learningPathRepository) {
+    public InitialDataInsert(NewsRepository newsRepository, DocumentationsRepository documentationsRepository, DAXFunctionsRepository daxFunctionsRepository, CommunityDocumentsRepository communityDocumentsRepository, CommunityLinksRepository communityLinksRepository, InfluencersRepository influencersRepository, CourseRepository courseRepository, LearningPathRepository learningPathRepository, QuestionRepository questionRepository, ExamRepository examRepository) {
         this.newsRepository = newsRepository;
         this.documentationsRepository = documentationsRepository;
         this.daxFunctionsRepository = daxFunctionsRepository;
@@ -30,6 +33,8 @@ public class InitialDataInsert {
         this.influencersRepository = influencersRepository;
         this.courseRepository = courseRepository;
         this.learningPathRepository = learningPathRepository;
+        this.questionRepository = questionRepository;
+        this.examRepository = examRepository;
     }
 
     public static byte[] hexStringToByteArray(String s) {
@@ -162,5 +167,16 @@ public class InitialDataInsert {
 
         this.learningPathRepository.save(new LearningPath("Introduction to Power BI", List.of(this.courseRepository.findById(2L).get(), this.courseRepository.findById(4L).get(), this.courseRepository.findById(9L).get())));
         this.learningPathRepository.save(new LearningPath("Prepare data for analysis", List.of(this.courseRepository.findById(1L).get(), this.courseRepository.findById(3L).get(), this.courseRepository.findById(7L).get())));
+
+        this.questionRepository.save(new Question("You are interested in creating a measure that will always calculate the total sales for 2020, irrespective of the year selected in any other visual in Power BI. Which of the following is the right way to create such a measure?", List.of("Total Sales for 2020= CALCULATE(SUM(‘Sales OrderDetails'[Total Price]), YEAR(‘Sales OrderDetails'[orderdate]) = 2020)", "Total Sales for 2020= SUM(CALCULATE(‘Sales OrderDetails'[Total Price]), YEAR(‘Sales OrderDetails'[orderdate]) = 2020)", "Total Sales for 2020= TOTAL(SUM(‘Sales OrderDetails'[Total Price]), YEAR(‘Sales OrderDetails'[orderdate]) = 2020)", "It is not possible to create such a measure."), 1));
+        this.questionRepository.save(new Question("The data model has an impact on the time consumed in the refreshing of a model but once the model is loaded in the memory, it has no impact on the performance of the reports. Select whether the statement is True/False.", List.of("True", "False"), 2));
+        this.questionRepository.save(new Question("What will be the result of the following DAX formula if the year 2020 is chosen on a slicer of a report? 2019 Salary_Cost = CALCULATE([Total Salary_cost], Filter (Date, Date[Year]=2019))", List.of("Salary_cost for the Year 2020 as Slicer Selection overrides DAX Filter.", "Salary_cost for the Year 2019 as DAX Filter overrides Slicer Selection.", "Blank. It will return no records.", "It will return Salary_cost records for the year 2019 as well as 2020."), 3));
+        this.questionRepository.save(new Question("Which of the following is the right DAX function to modify a single directional relationship to a bi-directional relationship on the fly (within the measure)?", List.of("TREATAS", "USERELATIONSHIP", "CROSSFILTER", "RELATEDTABLE", "RELATED"), 3));
+        this.questionRepository.save(new Question("What is the use of Row Level Security (RLS) in Power BI?", List.of("Assigning the security permissions for the underlying Power BI Azure SQL Database", "Adding the ability to link Power BI Log-in to organizational Active Directory or Window Login through Single Sign On (SSO)", "Restricting data access for the given users ( By assigning users to roles)", "Restrictions to specific measures within Power BI reports to some specific users", "All the above"), 3));
+        this.questionRepository.save(new Question("Consider that you want to split your query into two parts. Which of the following options would you use in Power BI?", List.of("Format Query", "Split Query", "Extract previous", "Mark Query"), 3));
+        this.questionRepository.save(new Question("Consider the statement.Row Level Security can’t be applied in Power BI Desktop while connecting via a Live connection to Analysis Services, these need to be set within the AS model.", List.of("True", "False"), 2));
+
+        this.examRepository.save(new Exam("Microsoft Power BI PL-300 (DA-100) Certification","PowerBI Desktop", 3.6, "30 min", LocalDateTime.now(), 141, "This PL-300(earlier named as DA-100) Certification Exam: Microsoft Power BI  Data Analyst certification is for data analysts. ", "This PL-300(earlier named as DA-100) Certification Exam: Microsoft Power BI  Data Analyst certification is for data analysts. This certificate is crucial for you if you use Power BI to create data visualizations. The DA-100 course teaches you to design scalable data models, clean and transform data and present analytic insights. This set of 25 DA 100 exam questions will cover the important skills measured in the DA-100 Exam such as:Prepare the data. Create a model. Create Visualization. Analyze and prepare insights. Deploy and maintain deliverables. These DA 100 exam questions will give you a very good idea of how the actual exam would look like; you can practice more with our DA-100 practice exam." ,List.of("Watch PL-300 Exam Prep videos on Learn", "Download the PL-300 study guide to help you prepare for the exam", "Demo the exam experience by visiting our Exam Sandbox"), "Intermediate", "Microsoft Power BI  Data Analyst", List.of(this.questionRepository.findById(1L).get(),this.questionRepository.findById(2L).get(),this.questionRepository.findById(3L).get(),this.questionRepository.findById(4L).get(),this.questionRepository.findById(5L).get(),this.questionRepository.findById(6L).get(),this.questionRepository.findById(7L).get())));
+
     }
 }
