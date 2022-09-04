@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/exams")
+@RequestMapping("/api/exams123")
 @CrossOrigin(value = "*")
 public class ExamController {
     private final ExamService examService;
