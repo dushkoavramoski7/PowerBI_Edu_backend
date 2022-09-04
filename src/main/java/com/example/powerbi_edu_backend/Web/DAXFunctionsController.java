@@ -25,8 +25,8 @@ public class DAXFunctionsController {
         return this.daxFunctionsService.findAll();
     }
 
-    @GetMapping("/categories")
-    public List<String> getAllDAXFunctionsCategories() {
-        return this.daxFunctionsService.findAllDAXFuncCategories();
-    }
+//    @GetMapping("/categories")
+//    public List<String> getAllDAXFunctionsCategories() {
+//        return this.daxFunctionsService.findAllDAXFuncCategories();
+//    }
 }
