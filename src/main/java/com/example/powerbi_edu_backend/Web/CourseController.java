@@ -3,6 +3,7 @@ package com.example.powerbi_edu_backend.Web;
 
 import com.example.powerbi_edu_backend.Model.Entities.Course;
 import com.example.powerbi_edu_backend.Model.Entities.Exam;
+import com.example.powerbi_edu_backend.Model.dto.AnswerQuestion;
 import com.example.powerbi_edu_backend.Service.CourseService;
 import com.example.powerbi_edu_backend.Service.ExamService;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +41,11 @@ public class CourseController {
     @GetMapping("/exams/{id}")
     public Exam getExam(@PathVariable Long id) {
         return this.examService.findById(id);
+    }
+
+    @PostMapping("/exam/{id}/submit")
+    public Double submitAnswers(@PathVariable Long id, @RequestBody List<AnswerQuestion> answers)
+    {
+        return this.examService.submitAnswers(answers);
     }
 }
